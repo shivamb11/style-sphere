@@ -1,0 +1,28 @@
+.special-products {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 150px;
+  gap: 40px;
+
+  .top {
+    display: flex;
+
+    h2 {
+      flex: 2;
+      text-transform: capitalize;
+    }
+
+    p {
+      flex: 3;
+      color: gray;
+      text-align: justify;
+      font-size: 16px;
+      word-spacing: 1px;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

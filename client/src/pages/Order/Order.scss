@@ -1,0 +1,29 @@
+.order {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  h2 {
+    font-variant: small-caps;
+  }
+
+  .success {
+    color: green;
+  }
+  .failure {
+    color: red;
+  }
+
+  .reference-id {
+    color: gray;
+    font-size: 14px;
+  }
+
+  .link {
+    color: black;
+  }
+}

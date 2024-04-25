@@ -1,0 +1,76 @@
+.footer {
+  margin: 100px 150px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .top {
+    display: flex;
+    gap: 40px;
+
+    .item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h2 {
+        font-size: 20px;
+        font-weight: normal;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        color: gray;
+      }
+
+      .about {
+        text-align: justify;
+        color: gray;
+        line-height: 24px;
+        letter-spacing: 1px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        span {
+          color: gray;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .logo {
+        color: #2879fe;
+        font-size: 32px;
+      }
+
+      .copyright {
+        color: gray;
+        font-size: 14px;
+      }
+    }
+
+    .right {
+      .payments {
+        width: 500px;
+      }
+    }
+  }
+}

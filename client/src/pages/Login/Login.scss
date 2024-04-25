@@ -1,0 +1,74 @@
+$color-blue: #2786fe;
+
+.login {
+  height: 100%;
+  width: 100vw;
+  background-image: url("/images/login.jpg");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .wrapper {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+
+    h1 {
+      font-size: 26px;
+      font-weight: 300;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    .error {
+      color: red;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      input {
+        flex: 1;
+        min-width: 40%;
+        padding: 12px 20px;
+        margin: 10px 0;
+        font-size: 15px;
+      }
+
+      button {
+        width: 40%;
+        background-color: $color-blue;
+        color: white;
+        padding: 14px 16px;
+        font-size: 15px;
+        font-weight: 400;
+        border: none;
+        cursor: pointer;
+        margin: 20px 0;
+
+        &:hover {
+          background-color: #2788fee1;
+          transition: all 0.1s ease;
+        }
+
+        &:focus {
+          outline: 2px solid $color-blue;
+        }
+      }
+
+      .link {
+        font-size: 15px;
+        cursor: pointer;
+        margin: 5px 0;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

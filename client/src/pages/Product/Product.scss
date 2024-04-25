@@ -1,0 +1,177 @@
+$color-blue: #2879fe;
+
+.product {
+  display: flex;
+  padding: 30px;
+  gap: 40px;
+
+  button {
+    cursor: pointer;
+  }
+
+  .left {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+
+    .images {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      img {
+        height: 120px;
+        width: 120px;
+        object-fit: cover;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.02);
+          transition: all 0.4s ease;
+        }
+      }
+    }
+
+    .main-image {
+      height: 600px;
+      width: 600px;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    h1 {
+      font-size: 26px;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .price {
+      color: $color-blue;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span:first-child {
+        font-weight: 600;
+        font-size: 24px;
+      }
+
+      span:nth-child(2) {
+        font-size: 16px;
+        text-decoration: line-through;
+      }
+
+      span:last-child {
+        font-size: 17px;
+        font-weight: 600;
+      }
+    }
+
+    .description {
+      text-align: justify;
+    }
+
+    .feature {
+      width: 40%;
+      display: flex;
+      justify-content: space-between;
+
+      .size {
+        padding: 0 10px;
+        text-transform: uppercase;
+
+        option {
+          height: 20px;
+        }
+      }
+
+      .quantity {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+
+        button {
+          padding: 14px 20px;
+          border: none;
+          font-size: 18px;
+          font-weight: bolder;
+        }
+      }
+    }
+
+    .add-cart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 200px;
+      background-color: $color-blue;
+      color: white;
+      padding: 8px 16px;
+      font-size: 14px;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      button {
+        color: white;
+        background-color: $color-blue;
+        border: none;
+      }
+    }
+
+    .links {
+      display: flex;
+      gap: 25px;
+      color: $color-blue;
+      font-size: 14px;
+
+      .item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        text-transform: uppercase;
+
+        button {
+          color: $color-blue;
+          background-color: white;
+          border: none;
+        }
+      }
+    }
+
+    .basic-info,
+    .more-info {
+      color: gray;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    hr {
+      border: 1px solid rgb(230, 230, 230);
+    }
+
+    .more-info {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin: 5px;
+
+      hr {
+        width: 100px;
+      }
+    }
+  }
+}

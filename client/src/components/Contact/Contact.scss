@@ -1,0 +1,45 @@
+.contact {
+  background-color: #2879fe;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+
+  span {
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .mail {
+    input {
+      height: 35px;
+      padding: 5px 8px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: black;
+      color: white;
+      border: none;
+      height: 35px;
+      padding: 5px 8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      border-radius: 0 5px 5px 0;
+    }
+  }
+
+  .icons {
+    color: white;
+    display: flex;
+    gap: 6px;
+  }
+}

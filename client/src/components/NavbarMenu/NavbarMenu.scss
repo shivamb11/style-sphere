@@ -1,0 +1,48 @@
+$color-blue: #2789fe;
+$color-grey: #eee;
+
+.navbar-menu {
+  position: fixed;
+  background-color: white;
+  padding: 50px 40px;
+  top: 44px;
+  left: 20px;
+  z-index: 5;
+  display: flex;
+  gap: 40px;
+  box-shadow: 1px 1px 1px $color-grey, -1px 1px 1px $color-grey,
+    1px 1px 1px $color-grey;
+  -webkit-box-shadow: 1px 1px 1px $color-grey, -1px 1px 1px $color-grey,
+    1px 1px 1px $color-grey;
+
+  .subcategory {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      color: $color-blue;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .li {
+        font-size: 14px;
+        color: #000000cb;
+
+        &:hover {
+          color: #000;
+          cursor: pointer;
+        }
+      }
+      text-transform: capitalize;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.custom-app {
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  height: 100vh;
+
+  .link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .outlet {
+    position: relative;
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+}
