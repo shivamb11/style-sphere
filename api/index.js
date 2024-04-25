@@ -25,7 +25,7 @@ const orderRouter = require("./routes/order");
 // Enable CORS for all routes with specific options
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://style-sphere-ss.vercel.app/",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
