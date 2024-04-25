@@ -4,7 +4,7 @@ const { v4: uuid } = require("uuid");
 
 const Product = require("../models/Product");
 const Order = require("../models/Order");
-const { verifyToken, verifyAuthorization } = require("../middlewares");
+const { verifyToken } = require("../middlewares");
 const { catchAsync } = require("../utilities");
 
 const stripe = require("stripe")(process.env.STRIPE_KEY);

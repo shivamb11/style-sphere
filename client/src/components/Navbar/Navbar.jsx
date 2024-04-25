@@ -96,12 +96,12 @@ function Navbar({ onNavbarMenu }) {
         </div>
         <div className="right">
           <div className="item">
-            <HashLink className="link" to="/#">
+            <HashLink smooth className="link" to="/#">
               Home
             </HashLink>
           </div>
           <div className="item">
-            <HashLink className="link" to="/#contact">
+            <HashLink smooth className="link" to="/#contact">
               Contact
             </HashLink>
           </div>
