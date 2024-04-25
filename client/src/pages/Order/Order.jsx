@@ -8,7 +8,9 @@ import "./Order.scss";
 
 async function getOrder(id) {
   try {
-    const res = await axios.get(`http://localhost:3000/api/orders/${id}`);
+    const res = await axios.get(
+      `https://style-sphere-api.vercel.app/api/orders/${id}`
+    );
     return res.data;
   } catch (err) {
     console.log(err);

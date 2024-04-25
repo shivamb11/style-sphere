@@ -11,11 +11,14 @@ import { validateEmail } from "../../helpers.js";
 
 async function getUser(id, accessToken) {
   try {
-    const res = await axios.get(`http://localhost:3000/api/users/${id}`, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const res = await axios.get(
+      `https://style-sphere-api.vercel.app/api/users/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     return res.data;
   } catch (err) {
     console.log(err);
@@ -68,7 +71,7 @@ function User() {
     try {
       setError("");
       const res = await axios.put(
-        `http://localhost:3000/api/users/${user.currentUser.id}`,
+        `https://style-sphere-api.vercel.app/api/users/${user.currentUser.id}`,
         { fullname, email, street, city, state },
         {
           headers: {

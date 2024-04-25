@@ -17,7 +17,7 @@ async function getProducts(category, subcategory, type, special, name) {
 
   try {
     const res = await axios.get(
-      "http://localhost:3000/api/products" +
+      "https://style-sphere-api.vercel.app/api/products" +
         categoryUrl +
         subCategoryUrl +
         typeUrl +

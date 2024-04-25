@@ -25,7 +25,7 @@ function Cart({ onShowCart }) {
     try {
       const stripe = await stripePromise;
       const res = await axios.post(
-        "http://localhost:3000/api/stripe-checkout",
+        "https://style-sphere-api.vercel.app/api/stripe-checkout",
         {
           products: cart.products,
           user_email: user.currentUser?.email,

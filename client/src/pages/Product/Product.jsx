@@ -20,7 +20,9 @@ const img2 =
 
 async function getProduct(id) {
   try {
-    const res = await axios.get(`http://localhost:3000/api/product/${id}`);
+    const res = await axios.get(
+      `https://style-sphere-api.vercel.app/api/product/${id}`
+    );
     return res.data;
   } catch (err) {
     console.log(err);

@@ -11,7 +11,7 @@ import "./Homepage.scss";
 async function getFeaturedProducts() {
   try {
     const res = await axios.get(
-      "http://localhost:3000/api/products?special=featured"
+      "https://style-sphere-api.vercel.app/api/products?special=featured"
     );
     return res.data;
   } catch (err) {
@@ -22,7 +22,7 @@ async function getFeaturedProducts() {
 async function getTopProducts() {
   try {
     const res = await axios.get(
-      "http://localhost:3000/api/products?special=new"
+      "https://style-sphere-api.vercel.app/products?special=new"
     );
     return res.data;
   } catch (err) {

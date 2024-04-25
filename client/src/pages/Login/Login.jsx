@@ -28,10 +28,13 @@ function Login() {
     try {
       setError("");
       dispatch(loginStart());
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
-        username,
-        password,
-      });
+      const res = await axios.post(
+        "https://style-sphere-api.vercel.app/api/auth/login",
+        {
+          username,
+          password,
+        }
+      );
       dispatch(loginComplete(res.data));
       toast.success("Logged in successfully");
       window.location.href = "/";
