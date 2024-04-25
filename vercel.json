@@ -9,11 +9,8 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://style-sphere-api.vercel.app/"
+      "destination": "https://style-sphere-api.vercel.app/$1"
     },
     { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "https://style-sphere-ss.vercel.app/" }
   ]
 }
