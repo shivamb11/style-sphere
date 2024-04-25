@@ -74,8 +74,8 @@ function Products() {
 
   const filteredData = data?.filter(
     (el) =>
-      el.price >= price.minPrice &&
-      el.price <= price.maxPrice &&
+      Math.round(el.price - (el.price * el.discount) / 100) >= price.minPrice &&
+      Math.round(el.price - (el.price * el.discount) / 100) <= price.maxPrice &&
       el.discount >= discount
   );
 
