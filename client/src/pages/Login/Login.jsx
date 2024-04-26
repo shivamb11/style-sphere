@@ -38,7 +38,9 @@ function Login() {
       );
       dispatch(loginComplete(res.data));
       toast.success("Logged in successfully");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 0);
     } catch (err) {
       setError(err.response.data);
     }

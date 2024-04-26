@@ -10,7 +10,10 @@ function UserMenu() {
   const dispatch = useDispatch();
   function handleLogout() {
     dispatch(logout());
-    toast.success("Logged out successfully");
+
+    setTimeout(() => {
+      toast.success("Logged out successfully");
+    }, 500);
   }
 
   return (

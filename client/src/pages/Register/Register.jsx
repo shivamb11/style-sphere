@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 import { loginComplete, loginStart } from "../../redux/userReducer.js";
 import "./Register.scss";
-import toast from "react-hot-toast";
 import { validateEmail } from "../../helpers.js";
-import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -47,18 +47,23 @@ function Register() {
     try {
       setError("");
       dispatch(loginStart());
-      const res = await axios.post("http://localhost:3000/api/auth/register", {
-        fullname,
-        username,
-        email,
-        password,
-        street,
-        city,
-        state,
-      });
+      const res = await axios.post(
+        "https://style-sphere-api.vercel.app/api/auth/register",
+        {
+          fullname,
+          username,
+          email,
+          password,
+          street,
+          city,
+          state,
+        }
+      );
       dispatch(loginComplete(res.data));
       toast.success("Registered successfully");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 0);
     } catch (err) {
       setError(err.response.data);
     }
