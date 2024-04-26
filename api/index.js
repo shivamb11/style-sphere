@@ -23,7 +23,13 @@ const stripeRouter = require("./routes/stripe");
 const orderRouter = require("./routes/order");
 
 // Enable CORS for all routes with specific options
-app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  })
+);
 
 app.use(express.static("public"));
 app.use(express.json());
