@@ -52,8 +52,8 @@ router.post(
       shipping_address_collection: {
         allowed_countries: ["IN"],
       },
-      success_url: `${CLIENT_URL}/order/${uid}?payment=true`,
-      cancel_url: `${CLIENT_URL}/order/${uid}?payment=false`,
+      success_url: `/order/${uid}?payment=true`,
+      cancel_url: `/order/${uid}?payment=false`,
     });
 
     const newOrder = new Order({
