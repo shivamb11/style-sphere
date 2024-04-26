@@ -2,7 +2,7 @@ import { DeleteOutline } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { removeFromCart, resetCart } from "../../redux/cartReducer.js";
 import "./Cart.scss";
@@ -15,6 +15,7 @@ function Cart({ onShowCart }) {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const total = cart.products.reduce(
     (acc, curr) => acc + curr.quantity * curr.price,
@@ -49,7 +50,7 @@ function Cart({ onShowCart }) {
         (err.response.data === "Token is not valid" &&
           err.response.status === 403)
       ) {
-        window.location.href = "/login";
+        navigate("/login");
       }
     }
   }

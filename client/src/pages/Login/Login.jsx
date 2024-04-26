@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,7 +38,7 @@ function Login() {
       );
       dispatch(loginComplete(res.data));
       toast.success("Logged in successfully");
-      window.location.href = "/";
+      navigate("/");
     } catch (err) {
       setError(err.response.data);
     }

@@ -6,6 +6,7 @@ import { loginComplete, loginStart } from "../../redux/userReducer.js";
 import "./Register.scss";
 import toast from "react-hot-toast";
 import { validateEmail } from "../../helpers.js";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -20,6 +21,7 @@ function Register() {
   const [error, setError] = useState();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleAgreement() {
     setError("");
@@ -56,7 +58,7 @@ function Register() {
       });
       dispatch(loginComplete(res.data));
       toast.success("Registered successfully");
-      window.location.href = "/";
+      navigate("/");
     } catch (err) {
       setError(err.response.data);
     }
