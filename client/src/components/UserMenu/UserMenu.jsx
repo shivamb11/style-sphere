@@ -13,7 +13,7 @@ function UserMenu() {
 
     setTimeout(() => {
       toast.success("Logged out successfully");
-    }, 500);
+    }, 1000);
   }
 
   return (

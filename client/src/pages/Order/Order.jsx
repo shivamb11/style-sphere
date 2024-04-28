@@ -5,12 +5,18 @@ import axios from "axios";
 import { getDeliveryDate } from "../../helpers.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import "./Order.scss";
+import { useDispatch } from "react-redux";
+import { resetCart } from "../../redux/cartReducer.js";
 
-async function getOrder(id) {
+async function getOrder(id, payment, dispatch) {
   try {
     const res = await axios.get(
       `https://style-sphere-api.vercel.app/api/orders/${id}`
     );
+
+    if (payment) {
+      dispatch(resetCart());
+    }
     return res.data;
   } catch (err) {
     console.log(err);
@@ -19,15 +25,16 @@ async function getOrder(id) {
 
 function Order() {
   const { id } = useParams();
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: [id],
-    queryFn: () => getOrder(id),
-  });
-
   const [searchParams] = useSearchParams();
 
   const payment = searchParams.get("payment");
+
+  const dispatch = useDispatch();
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: [id],
+    queryFn: () => getOrder(id, payment, dispatch),
+  });
 
   if (isLoading) {
     return <Loader />;

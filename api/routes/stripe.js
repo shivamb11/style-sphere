@@ -11,7 +11,7 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const CLIENT_URL = process.env.CLIENT_URL;
 
-// Card No. 4000003560000008
+// Card No. 4000 0035 6000 0008
 
 router.post(
   "/stripe-checkout",
