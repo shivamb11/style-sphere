@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -33,7 +32,7 @@ async function getProducts(category, subcategory, type, special, name) {
 function Products() {
   const { category } = useParams();
   const { subcategory } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const type = searchParams.get("type");
   const special = searchParams.get("special");
@@ -44,56 +43,39 @@ function Products() {
     queryFn: () => getProducts(category, subcategory, type, special, name),
   });
 
-  const [price, setPrice] = useState({ minPrice: 0, maxPrice: 10000 });
-  const [discount, setDiscount] = useState(0);
-
-  function handlePrice(value) {
-    if (
-      price.minPrice === value.minPrice &&
-      price.maxPrice === value.maxPrice
-    ) {
-      setPrice({ minPrice: 0, maxPrice: 10000 });
-    } else {
-      setPrice(value);
-    }
-  }
-
-  function handleDiscount(value) {
-    if (discount === value) {
-      setDiscount(0);
-    } else {
-      setDiscount(value);
-    }
-  }
+  const minPrice = searchParams.get("minPrice") || 0;
+  const maxPrice = searchParams.get("maxPrice") || 10000;
+  const discount = searchParams.get("discount") || 0;
 
   if (isLoading) {
     return <Loader />;
   }
 
-  const sortby = searchParams.get("sortby") || "_id-asc";
-
   const filteredData = data?.filter(
     (el) =>
-      Math.round(el.price - (el.price * el.discount) / 100) >= price.minPrice &&
-      Math.round(el.price - (el.price * el.discount) / 100) <= price.maxPrice &&
+      Math.round(el.price - (el.price * el.discount) / 100) >= minPrice &&
+      Math.round(el.price - (el.price * el.discount) / 100) <= maxPrice &&
       el.discount >= discount
   );
 
+  const sortby = searchParams.get("sortby") || "title-asc";
   const [field, direction] = sortby.split("-");
   const modifier = direction === "asc" ? 1 : -1;
 
   const sortedData = filteredData?.sort((a, b) => {
-    if (typeof a[field] === "string") {
-      if (a[field].toUpperCase() < b[field].toUpperCase()) {
+    const checkField = field === "disc" ? "discount" : field;
+
+    if (typeof a[checkField] === "string") {
+      if (a[checkField].toUpperCase() < b[checkField].toUpperCase()) {
         return -1 * modifier;
-      } else if (a[field].toUpperCase() > b[field].toUpperCase()) {
+      } else if (a[checkField].toUpperCase() > b[checkField].toUpperCase()) {
         return 1 * modifier;
       }
       // names must be equal
       return 0;
     } else {
       // For numeric values
-      return (a[field] - b[field]) * modifier;
+      return (a[checkField] - b[checkField]) * modifier;
     }
   });
 
@@ -103,16 +85,11 @@ function Products() {
         category={category}
         subcategory={subcategory}
         type={type}
-        price={price}
-        onPrice={handlePrice}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
         discount={discount}
-        onDiscount={handleDiscount}
       />
-      <ProductsDetails
-        data={sortedData}
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-      />
+      <ProductsDetails data={sortedData} />
     </div>
   );
 }

@@ -4,9 +4,9 @@ import { EastOutlined, WestOutlined } from "@mui/icons-material";
 import "./Slider.scss";
 
 const imgs = [
-  "https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  "https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/1629020/pexels-photo-1629020.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/4172177/pexels-photo-4172177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 ];
 
 function Slider() {
@@ -21,7 +21,7 @@ function Slider() {
   }
 
   useEffect(function () {
-    const changeSlides = setInterval(handleNext, 3000);
+    const changeSlides = setInterval(handleNext, 3500);
 
     return function () {
       clearInterval(changeSlides);

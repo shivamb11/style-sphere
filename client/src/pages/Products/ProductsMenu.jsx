@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 import "./ProductsMenu.scss";
+import { mergeSearchParams, mergeSearchParams2 } from "../../helpers.js";
 
 const data = [
   {
@@ -69,11 +75,41 @@ function ProductsMenu({
   category,
   subcategory,
   type,
-  price,
-  onPrice,
+  minPrice,
+  maxPrice,
   discount,
-  onDiscount,
 }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { pathname, search } = useLocation();
+
+  function handlePrice(value) {
+    const newMinPrice =
+      Number(minPrice) === value.minPrice ? 0 : value.minPrice;
+    const newMaxPrice =
+      Number(maxPrice) === value.maxPrice ? 100000 : value.maxPrice;
+
+    setSearchParams(searchParams.set("minPrice", newMinPrice));
+    setSearchParams(searchParams.set("maxPrice", newMaxPrice));
+
+    mergeSearchParams2(
+      pathname,
+      search,
+      navigate,
+      "minPrice",
+      newMinPrice,
+      "maxPrice",
+      newMaxPrice
+    );
+  }
+
+  function handleDiscount(value) {
+    const newDiscount = Number(discount) === value ? 0 : value;
+
+    setSearchParams(searchParams.set("discount", newDiscount));
+    mergeSearchParams(pathname, search, navigate, "discount", newDiscount);
+  }
+
   return (
     <div className="products-menu">
       <h2>Filters</h2>
@@ -146,8 +182,8 @@ function ProductsMenu({
             type="checkbox"
             name="price"
             id="price0to500"
-            checked={price.minPrice === 0 && price.maxPrice === 500}
-            onChange={() => onPrice({ minPrice: 0, maxPrice: 500 })}
+            checked={Number(minPrice) === 0 && Number(maxPrice) === 500}
+            onChange={() => handlePrice({ minPrice: 0, maxPrice: 500 })}
           />
           <label htmlFor="price0to500">₹0 to ₹500</label>
         </div>
@@ -156,8 +192,8 @@ function ProductsMenu({
             type="checkbox"
             name="price"
             id="price500to1000"
-            checked={price.minPrice === 500 && price.maxPrice === 1000}
-            onChange={() => onPrice({ minPrice: 500, maxPrice: 1000 })}
+            checked={Number(minPrice) === 500 && Number(maxPrice) === 1000}
+            onChange={() => handlePrice({ minPrice: 500, maxPrice: 1000 })}
           />
           <label htmlFor="price500to1000">₹500 to ₹1000</label>
         </div>
@@ -166,8 +202,8 @@ function ProductsMenu({
             type="checkbox"
             name="price"
             id="price1000to2000"
-            checked={price.minPrice === 1000 && price.maxPrice === 2000}
-            onChange={() => onPrice({ minPrice: 1000, maxPrice: 2000 })}
+            checked={Number(minPrice) === 1000 && Number(maxPrice) === 2000}
+            onChange={() => handlePrice({ minPrice: 1000, maxPrice: 2000 })}
           />
           <label htmlFor="price1000to2000">₹1000 to ₹2000</label>
         </div>
@@ -176,8 +212,8 @@ function ProductsMenu({
             type="checkbox"
             name="price"
             id="price2000to3000"
-            checked={price.minPrice === 2000 && price.maxPrice === 3000}
-            onChange={() => onPrice({ minPrice: 2000, maxPrice: 3000 })}
+            checked={Number(minPrice) === 2000 && Number(maxPrice) === 3000}
+            onChange={() => handlePrice({ minPrice: 2000, maxPrice: 3000 })}
           />
           <label htmlFor="price2000to3000">₹2000 to ₹3000</label>
         </div>
@@ -186,8 +222,8 @@ function ProductsMenu({
             type="checkbox"
             name="price"
             id="price3000to4000"
-            checked={price.minPrice === 3000 && price.maxPrice === 4000}
-            onChange={() => onPrice({ minPrice: 3000, maxPrice: 4000 })}
+            checked={Number(minPrice) === 3000 && Number(maxPrice) === 4000}
+            onChange={() => handlePrice({ minPrice: 3000, maxPrice: 4000 })}
           />
           <label htmlFor="price3000to4000">₹3000 to ₹4000</label>
         </div>
@@ -201,7 +237,7 @@ function ProductsMenu({
             name="discount"
             id="discount10to20"
             checked={discount >= 10 && discount < 20}
-            onChange={() => onDiscount(10)}
+            onChange={() => handleDiscount(10)}
           />
           <label htmlFor="discount10to20">Above 10%</label>
         </div>
@@ -211,7 +247,7 @@ function ProductsMenu({
             name="discount"
             id="discount20to30"
             checked={discount >= 20 && discount < 30}
-            onChange={() => onDiscount(20)}
+            onChange={() => handleDiscount(20)}
           />
           <label htmlFor="discount20to30">Above 20%</label>
         </div>
@@ -221,7 +257,7 @@ function ProductsMenu({
             name="discount"
             id="discount30to40"
             checked={discount >= 30 && discount < 40}
-            onChange={() => onDiscount(30)}
+            onChange={() => handleDiscount(30)}
           />
           <label htmlFor="discount30to40">Above 30%</label>
         </div>
@@ -231,7 +267,7 @@ function ProductsMenu({
             name="discount"
             id="discount40to50"
             checked={discount >= 40 && discount < 50}
-            onChange={() => onDiscount(40)}
+            onChange={() => handleDiscount(40)}
           />
           <label htmlFor="discount40to50">Above 40%</label>
         </div>
@@ -241,7 +277,7 @@ function ProductsMenu({
             name="discount"
             id="discount50to100"
             checked={discount >= 50 && discount < 100}
-            onChange={() => onDiscount(50)}
+            onChange={() => handleDiscount(50)}
           />
           <label htmlFor="discount50to100">Above 50%</label>
         </div>

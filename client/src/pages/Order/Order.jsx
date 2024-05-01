@@ -53,8 +53,8 @@ function Order() {
         <>
           <h2 className="failure">Payment failed 😥</h2>
           <p className="reference-id">Reference id: ({id})</p>
-          <Link className="link" to={"/cart"}>
-            Go to cart
+          <Link className="link" to={"/products"}>
+            Go to products
           </Link>
         </>
       )}
