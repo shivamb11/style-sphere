@@ -1,0 +1,16 @@
+.error {
+  height: 34vh;
+  min-width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: rgba(0, 0, 0, 0.8);
+    width: 350px;
+    text-align: justify;
+    text-align-last: center;
+  }
+}

@@ -1,17 +1,21 @@
+import { useState } from "react";
 import { DeleteOutline } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import { removeFromCart, resetCart } from "../../redux/cartReducer.js";
 import "./Cart.scss";
+import Loader from "../Loader/Loader.jsx";
 
 const stripePromise = loadStripe(
   "pk_test_51P7TpZSHDZnO68CZsubU7g4NUnrCqI0eO3jhlzBhRhTMxZZH13KU0yLjuXsod8bKclLyQEg07MzhkmqbSdeHvzMw00Yl8O9M6T"
 );
 
 function Cart({ onShowCart }) {
+  const [isLoading, setIsLoading] = useState(false);
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -23,6 +27,7 @@ function Cart({ onShowCart }) {
   );
 
   async function handleCheckout() {
+    setIsLoading(true);
     try {
       const stripe = await stripePromise;
       const res = await axios.post(
@@ -50,9 +55,18 @@ function Cart({ onShowCart }) {
         (err.response.data === "Token is not valid" &&
           err.response.status === 403)
       ) {
-        navigate("/login");
+        toast("You need to login first.");
+        setTimeout(() => {
+          navigate("/login");
+        }, 0);
       }
+    } finally {
+      setIsLoading(false);
     }
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (

@@ -8,8 +8,10 @@ import {
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
+import toast from "react-hot-toast";
 
 import Loader from "../../components/Loader/Loader.jsx";
+import Error from "../../components/Error/Error.jsx";
 import { addToCart } from "../../redux/cartReducer.js";
 import "./Product.scss";
 
@@ -59,8 +61,27 @@ function Product() {
     }
   }
 
+  function handleAddToCart() {
+    toast.success("Product added to cart");
+    dispatch(
+      addToCart({
+        id: data?._id,
+        title: data?.title,
+        desc: data?.description,
+        price: Math.round(data?.price - (data?.discount * data?.price) / 100),
+        image: data?.images[0],
+        size: size,
+        quantity: quantity,
+      })
+    );
+  }
+
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   return (
@@ -113,30 +134,13 @@ function Product() {
             <button onClick={() => handleQuantity("inc")}>+</button>
           </div>
         </div>
-        <div
-          className="add-cart"
-          onClick={() =>
-            dispatch(
-              addToCart({
-                id: data?._id,
-                title: data?.title,
-                desc: data?.description,
-                price: Math.round(
-                  data?.price - (data?.discount * data?.price) / 100
-                ),
-                image: data?.images[0],
-                size: size,
-                quantity: quantity,
-              })
-            )
-          }
-        >
+        <div className="add-cart" onClick={handleAddToCart}>
           <button>
             <ShoppingCartOutlined />
           </button>
           <span>Add to cart</span>
         </div>
-        <div className="links">
+        {/* <div className="links">
           <div className="item">
             <button>
               <FavoriteBorderOutlined />
@@ -149,7 +153,7 @@ function Product() {
             </button>
             <span>Add to compare</span>
           </div>
-        </div>
+        </div> */}
         <div className="basic-info">
           <p>Vendor: Polo</p>
           <p>Product type: {data?.type}</p>

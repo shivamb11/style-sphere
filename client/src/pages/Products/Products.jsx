@@ -5,6 +5,7 @@ import axios from "axios";
 import Loader from "../../components/Loader/Loader.jsx";
 import ProductsMenu from "./ProductsMenu.jsx";
 import ProductsDetails from "./ProductsDetails.jsx";
+import Error from "../../components/Error/Error.jsx";
 import "./Products.scss";
 
 async function getProducts(category, subcategory, type, special, name) {
@@ -49,6 +50,10 @@ function Products() {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   const filteredData = data?.filter(
