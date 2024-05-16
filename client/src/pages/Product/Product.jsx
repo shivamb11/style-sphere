@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import {
-  EqualizerOutlined,
-  FavoriteBorderOutlined,
-  ShoppingCartOutlined,
-} from "@mui/icons-material";
 import toast from "react-hot-toast";
+import {
+  MdOutlineEqualizer,
+  MdOutlineFavoriteBorder,
+  MdOutlineShoppingCart,
+} from "react-icons/md";
 
 import Loader from "../../components/Loader/Loader.jsx";
 import Error from "../../components/Error/Error.jsx";
@@ -136,20 +136,20 @@ function Product() {
         </div>
         <div className="add-cart" onClick={handleAddToCart}>
           <button>
-            <ShoppingCartOutlined />
+            <MdOutlineShoppingCart style={{ fontSize: "24px" }} />
           </button>
           <span>Add to cart</span>
         </div>
         {/* <div className="links">
           <div className="item">
             <button>
-              <FavoriteBorderOutlined />
+              <MdOutlineFavoriteBorder style={{ fontSize: "20px" }} />
             </button>
             <span>Add to wishlist</span>
           </div>
           <div className="item">
             <button>
-              <EqualizerOutlined />
+              <MdOutlineEqualizer style={{ fontSize: "20px" }} />
             </button>
             <span>Add to compare</span>
           </div>

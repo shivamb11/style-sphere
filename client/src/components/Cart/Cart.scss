@@ -40,13 +40,13 @@ $color-blue: #2789fe;
     flex-direction: column;
     row-gap: 15px;
     overflow: auto;
-    height: 325px;
+    height: 340px;
 
     .item {
-      height: 150px;
+      height: 160px;
       width: 400px;
       display: flex;
-      gap: 10px;
+      gap: 12px;
 
       .left {
         height: 100%;
@@ -90,6 +90,7 @@ $color-blue: #2789fe;
         .delete-btn {
           color: tomato;
           cursor: pointer;
+          font-size: 24px;
         }
       }
     }

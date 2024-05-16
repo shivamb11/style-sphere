@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, Room } from "@mui/icons-material";
+import { MdLocationOn, MdMail, MdPhone } from "react-icons/md";
 
 import "./Footer.scss";
 
@@ -59,16 +59,16 @@ function Footer() {
         <div className="item" id="contact">
           <h2>Contact</h2>
           <div className="contact-item">
-            <Room />
+            <MdLocationOn style={{ fontSize: "24px" }} />
             <span>432 Kingsway, Dexter 84336</span>
           </div>
           <div className="contact-item">
-            <Phone />
+            <MdPhone style={{ fontSize: "24px" }} />
             <span>+1 234 5678</span>
           </div>
           <div className="contact-item">
-            <Mail />
-            <span>contact@shivam.com</span>
+            <MdMail style={{ fontSize: "24px" }} />
+            <span>shivamsb2003@gmail.com</span>
           </div>
         </div>
       </div>

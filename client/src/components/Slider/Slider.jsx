@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EastOutlined, WestOutlined } from "@mui/icons-material";
+import { MdOutlineEast, MdOutlineWest } from "react-icons/md";
 
 import "./Slider.scss";
 
@@ -40,10 +40,10 @@ function Slider() {
       </div>
       <div className="icons">
         <div className="icon" onClick={handlePrev}>
-          <WestOutlined />
+          <MdOutlineWest style={{ fontSize: "24px" }} />
         </div>
         <div className="icon" onClick={handleNext}>
-          <EastOutlined />
+          <MdOutlineEast style={{ fontSize: "24px" }} />
         </div>
       </div>
     </div>

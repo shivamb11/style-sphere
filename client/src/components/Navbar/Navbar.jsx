@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { HashLink } from "react-router-hash-link";
 import {
-  PersonOutlineOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
-} from "@mui/icons-material";
+  MdOutlinePerson,
+  MdOutlineSearch,
+  MdOutlineShoppingCart,
+} from "react-icons/md";
 
 import Cart from "../Cart/Cart.jsx";
 import UserMenu from "../UserMenu/UserMenu.jsx";
@@ -115,16 +115,16 @@ function Navbar({ onNavbarMenu }) {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <label htmlFor="searchquery">
-                <SearchOutlined className="search-icon" />
+                <MdOutlineSearch style={{ fontSize: "25px" }} />
               </label>
             </form>
             <div onClick={handleShowUserMenu}>
-              <PersonOutlineOutlined />
+              <MdOutlinePerson style={{ fontSize: "25px" }} />
             </div>
             {showUserMenu && <UserMenu />}
 
             <div className="cart-icon" onClick={handleShowCart}>
-              <ShoppingCartOutlined />
+              <MdOutlineShoppingCart style={{ fontSize: "25px" }} />
               <span>{cart?.products?.length || 0}</span>
             </div>
           </div>

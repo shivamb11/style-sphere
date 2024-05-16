@@ -1,10 +1,10 @@
 import {
-  Facebook,
-  Google,
-  Instagram,
-  Pinterest,
-  Twitter,
-} from "@mui/icons-material";
+  FaFacebook,
+  FaGoogle,
+  FaInstagram,
+  FaPinterest,
+  FaTwitter,
+} from "react-icons/fa";
 
 import "./Contact.scss";
 
@@ -22,11 +22,11 @@ function Contact() {
         <button>Join Us</button>
       </div>
       <div className="icons">
-        <Facebook />
-        <Instagram />
-        <Twitter />
-        <Google />
-        <Pinterest />
+        <FaFacebook style={{ fontSize: "22px" }} />
+        <FaInstagram style={{ fontSize: "22px" }} />
+        <FaTwitter style={{ fontSize: "22px" }} />
+        <FaGoogle style={{ fontSize: "22px" }} />
+        <FaPinterest style={{ fontSize: "22px" }} />
       </div>
     </div>
   );

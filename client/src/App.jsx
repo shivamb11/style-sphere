@@ -15,11 +15,13 @@ import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import User from "./pages/User/User.jsx";
 import Order from "./pages/Order/Order.jsx";
+import Error from "./components/Error/Error.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -46,6 +48,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <CustomLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/login",
@@ -61,7 +64,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "/user", element: <User /> },
+  { path: "/user", element: <User />, errorElement: <Error /> },
 ]);
 
 const queryClient = new QueryClient();
