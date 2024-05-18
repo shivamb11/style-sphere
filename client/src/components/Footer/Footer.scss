@@ -6,7 +6,7 @@
 
   .top {
     display: flex;
-    gap: 40px;
+    gap: 60px;
     flex-wrap: wrap;
 
     .item {
@@ -43,6 +43,10 @@
           color: gray;
         }
       }
+    }
+
+    .item:nth-child(n + 3) {
+      flex: 1.4;
     }
   }
 
