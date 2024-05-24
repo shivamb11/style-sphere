@@ -21,7 +21,7 @@ const data = [
         type: ["jeans", "trousers", "shorts"],
       },
       {
-        heading: "shoes",
+        heading: "footwear",
         type: ["formal shoes", "sports shoes"],
       },
     ],
@@ -38,7 +38,7 @@ const data = [
         type: ["jeans", "skirts"],
       },
       {
-        heading: "shoes",
+        heading: "footwear",
         type: ["heels", "sports shoes"],
       },
     ],

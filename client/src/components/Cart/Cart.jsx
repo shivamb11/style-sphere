@@ -70,7 +70,7 @@ function Cart({ onShowCart }) {
   }
 
   return (
-    <div className="cart" onBlur={() => onShowCart(false)}>
+    <div className="cart">
       {cart.products.length ? (
         <>
           <h1>Products in your cart</h1>
@@ -84,8 +84,10 @@ function Cart({ onShowCart }) {
                   />
                 </div>
                 <div className="right">
-                  <h2>{item.title}</h2>
-                  <p className="desc">{item.desc.substring(0, 80)}</p>
+                  <Link to={`/product/${item._id}`} className="link title">
+                    {item.title}
+                  </Link>
+                  <p className="desc">{item.desc.substring(0, 75)}...</p>
                   <p className="size">
                     Size: <span>{item.size}</span>
                   </p>

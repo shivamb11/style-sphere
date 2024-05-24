@@ -91,6 +91,7 @@ $color-blue: #2879fe;
       .size {
         padding: 0 10px;
         text-transform: uppercase;
+        cursor: pointer;
 
         option {
           height: 20px;
@@ -107,6 +108,10 @@ $color-blue: #2879fe;
           border: none;
           font-size: 18px;
           font-weight: bolder;
+
+          &:hover {
+            background-color: rgb(222, 222, 223);
+          }
         }
       }
     }
@@ -127,6 +132,14 @@ $color-blue: #2879fe;
         color: white;
         background-color: $color-blue;
         border: none;
+
+        &:hover {
+          background-color: #2678fcf1;
+        }
+      }
+
+      &:hover {
+        background-color: #2678fcf1;
       }
     }
 

@@ -65,7 +65,7 @@ function Product() {
     toast.success("Product added to cart");
     dispatch(
       addToCart({
-        id: data?._id,
+        _id: data?._id,
         title: data?.title,
         desc: data?.description,
         price: Math.round(data?.price - (data?.discount * data?.price) / 100),

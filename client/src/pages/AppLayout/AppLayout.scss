@@ -11,7 +11,9 @@ ul {
 .app-layout {
   font-family: "Open Sans", sans-serif;
   position: relative;
-  min-height: 80vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   .link {
     color: inherit;
@@ -21,6 +23,6 @@ ul {
   .outlet {
     position: relative;
     top: 60px;
-    min-height: 30vh;
+    margin-bottom: 100px;
   }
 }
