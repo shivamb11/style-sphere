@@ -17,34 +17,56 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
-function mergeSearchParams(pathname, search, navigate, key, value) {
+function resetPage(key, url) {
+  const idxPage = url.indexOf("page");
+
+  if (key === "page" || idxPage === -1) {
+    return url;
+  }
+
+  // PAGE is present and it is either incremented or decremented
+  const keyParam = `page=1`;
+  const idxAnd = url.indexOf("&", idxPage + 1);
+  if (idxAnd != -1) {
+    // Another SEARCH PARAM after PAGE
+    return url.slice(0, idxPage) + keyParam + url.slice(idxAnd);
+  } else {
+    // No SEARCH PARAM after PAGE
+    return url.slice(0, idxPage) + keyParam;
+  }
+}
+
+function mergeSearchParamsOneKey(pathname, search, navigate, key, value) {
   const idxKey = search.indexOf(key);
 
   if (idxKey != -1) {
-    const keyParam = `${key}=${value}`;
     // KEY is present
+    const keyParam = `${key}=${value}`;
     const idxAnd = search.indexOf("&", idxKey + 1);
     if (idxAnd != -1) {
       // Another SEARCH PARAM after KEY
       navigate(
-        pathname + search.slice(0, idxKey) + keyParam + search.slice(idxAnd)
+        resetPage(
+          key,
+          pathname + search.slice(0, idxKey) + keyParam + search.slice(idxAnd)
+        )
       );
     } else {
       // No SEARCH PARAM after KEY
-      navigate(pathname + search.slice(0, idxKey) + keyParam);
+      navigate(resetPage(key, pathname + search.slice(0, idxKey) + keyParam));
     }
   } else if (search) {
-    const keyParam = `&${key}=${value}`;
     // KEY is absent but there is another SEARCH PARAM
-    navigate(pathname + search + keyParam);
+    const keyParam = `&${key}=${value}`;
+    navigate(resetPage(key, pathname + search + keyParam));
   } else {
-    const keyParam = `?${key}=${value}`;
     // KEY is absent and there is no other search param
-    navigate(pathname + keyParam);
+    const keyParam = `?${key}=${value}`;
+    navigate(resetPage(key, pathname + keyParam));
   }
 }
 
-function mergeSearchParams2(
+function mergeSearchParamsTwoKey(
   pathname,
   search,
   navigate,
@@ -57,32 +79,35 @@ function mergeSearchParams2(
   const idxKey2 = search.indexOf(key2);
 
   if (idxKey1 != -1) {
-    const keyParam = `${key1}=${value1}&${key2}=${value2}`;
     // KEY is present
+    const keyParam = `${key1}=${value1}&${key2}=${value2}`;
     const idxAnd = search.indexOf("&", idxKey2 + 1);
     if (idxAnd != -1) {
       // Another SEARCH PARAM after KEY
       navigate(
-        pathname + search.slice(0, idxKey1) + keyParam + search.slice(idxAnd)
+        resetPage(
+          key1,
+          pathname + search.slice(0, idxKey1) + keyParam + search.slice(idxAnd)
+        )
       );
     } else {
       // No SEARCH PARAM after KEY
-      navigate(pathname + search.slice(0, idxKey1) + keyParam);
+      navigate(resetPage(key1, pathname + search.slice(0, idxKey1) + keyParam));
     }
   } else if (search) {
-    const keyParam = `&${key1}=${value1}&${key2}=${value2}`;
     // KEY is absent but there is another SEARCH PARAM
-    navigate(pathname + search + keyParam);
+    const keyParam = `&${key1}=${value1}&${key2}=${value2}`;
+    navigate(resetPage(key1, pathname + search + keyParam));
   } else {
-    const keyParam = `?${key1}=${value1}&${key2}=${value2}`;
     // KEY is absent and there is no other search param
-    navigate(pathname + keyParam);
+    const keyParam = `?${key1}=${value1}&${key2}=${value2}`;
+    navigate(resetPage(key1, pathname + keyParam));
   }
 }
 
 export {
   getDeliveryDate,
   validateEmail,
-  mergeSearchParams,
-  mergeSearchParams2,
+  mergeSearchParamsOneKey,
+  mergeSearchParamsTwoKey,
 };

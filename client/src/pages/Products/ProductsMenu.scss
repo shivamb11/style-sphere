@@ -35,11 +35,23 @@
         display: flex;
         gap: 10px;
         text-transform: capitalize;
+        font-size: 15px;
+      }
+
+      label {
+        font-size: 15px;
       }
 
       input,
       label:hover {
         cursor: pointer;
+      }
+
+      .link.category:hover,
+      .link.subcategory:hover,
+      .link.type:hover,
+      label:hover {
+        font-weight: 500;
       }
     }
   }

@@ -6,7 +6,10 @@ import {
 } from "react-router-dom";
 
 import "./ProductsMenu.scss";
-import { mergeSearchParams, mergeSearchParams2 } from "../../helpers.js";
+import {
+  mergeSearchParamsOneKey,
+  mergeSearchParamsTwoKey,
+} from "../../helpers.js";
 
 const data = [
   {
@@ -92,7 +95,7 @@ function ProductsMenu({
     setSearchParams(searchParams.set("minPrice", newMinPrice));
     setSearchParams(searchParams.set("maxPrice", newMaxPrice));
 
-    mergeSearchParams2(
+    mergeSearchParamsTwoKey(
       pathname,
       search,
       navigate,
@@ -107,7 +110,13 @@ function ProductsMenu({
     const newDiscount = Number(discount) === value ? 0 : value;
 
     setSearchParams(searchParams.set("discount", newDiscount));
-    mergeSearchParams(pathname, search, navigate, "discount", newDiscount);
+    mergeSearchParamsOneKey(
+      pathname,
+      search,
+      navigate,
+      "discount",
+      newDiscount
+    );
   }
 
   return (

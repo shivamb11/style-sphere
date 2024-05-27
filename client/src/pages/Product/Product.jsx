@@ -49,6 +49,7 @@ function Product() {
     function () {
       setMainImage(data?.images?.[0].url);
       setSize(data?.size[0]);
+      window.scrollTo(0, 0);
     },
     [data?.images, data?.size]
   );

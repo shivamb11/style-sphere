@@ -1,3 +1,5 @@
+$color-blue: #3789fe;
+
 .products-details {
   flex: 4.5;
   display: flex;
@@ -24,6 +26,48 @@
 
     #sortby {
       padding: 5px 10px;
+    }
+  }
+
+  .pagination {
+    border: 3px solid ghostwhite;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .range {
+      font-size: 15px;
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: white;
+        padding: 10px 15px;
+        outline: 0.5px solid black;
+        cursor: pointer;
+        border: none;
+
+        &:hover:enabled {
+          color: white;
+          background-color: $color-blue;
+          outline-color: $color-blue;
+        }
+
+        &:hover:disabled {
+          cursor: not-allowed;
+        }
+      }
     }
   }
 }

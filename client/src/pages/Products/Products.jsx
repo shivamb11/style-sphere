@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -47,6 +48,10 @@ function Products() {
   const minPrice = searchParams.get("minPrice") || 0;
   const maxPrice = searchParams.get("maxPrice") || 10000;
   const discount = searchParams.get("discount") || 0;
+
+  useEffect(function () {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (isLoading) {
     return <Loader />;
