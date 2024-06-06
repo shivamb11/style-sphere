@@ -4,6 +4,7 @@ $color-blue: #2786fe;
   height: 100%;
   width: 100vw;
   background-image: url("/images/login.jpg");
+  max-width: 100%;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -33,7 +34,7 @@ $color-blue: #2786fe;
         font-size: 15px;
       }
 
-      p {
+      .error {
         color: red;
         width: 100%;
       }

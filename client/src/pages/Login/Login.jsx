@@ -29,13 +29,10 @@ function Login() {
     try {
       setError("");
       dispatch(loginStart());
-      const res = await axiosInstance.post(
-        "/api/auth/login",
-        {
-          username,
-          password,
-        }
-      );
+      const res = await axiosInstance.post("/api/auth/login", {
+        username,
+        password,
+      });
       dispatch(loginComplete(res.data));
       toast.success("Logged in successfully");
       setTimeout(() => {

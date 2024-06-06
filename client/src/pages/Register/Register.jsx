@@ -47,18 +47,15 @@ function Register() {
     try {
       setError("");
       dispatch(loginStart());
-      const res = await axiosInstance.post(
-        "/api/auth/register",
-        {
-          fullname,
-          username,
-          email,
-          password,
-          street,
-          city,
-          state,
-        }
-      );
+      const res = await axiosInstance.post("/api/auth/register", {
+        fullname,
+        username,
+        email,
+        password,
+        street,
+        city,
+        state,
+      });
       dispatch(loginComplete(res.data));
       toast.success("Registered successfully");
       setTimeout(() => {
@@ -153,7 +150,7 @@ function Register() {
               data in accordance with the <b>PRIVACY POLICY</b>.
             </label>
           </div>
-          {error && <p>{error}</p>}
+          {error && <p className="error">{error}</p>}
           <button>Register</button>
         </form>
       </div>
