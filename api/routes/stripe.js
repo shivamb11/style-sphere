@@ -22,7 +22,7 @@ router.post(
 
     const lineItems = await Promise.all(
       products?.map(async (product) => {
-        const item = await Product.findById(product.id);
+        const item = await Product.findById(product._id);
         totalPrice +=
           Math.round(item.price - (item.price * item.discount) / 100) *
           100 *

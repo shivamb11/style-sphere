@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 import { loginComplete, loginStart } from "../../redux/userReducer.js";
 import "./Login.scss";
+import axiosInstance from "../../axios.js";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -29,8 +29,8 @@ function Login() {
     try {
       setError("");
       dispatch(loginStart());
-      const res = await axios.post(
-        "https://style-sphere-api.vercel.app/api/auth/login",
+      const res = await axiosInstance.post(
+        "/api/auth/login",
         {
           username,
           password,

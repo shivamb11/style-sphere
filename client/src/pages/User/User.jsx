@@ -3,22 +3,19 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
 
 import Loader from "../../components/Loader/Loader.jsx";
 import "./User.scss";
 import { validateEmail } from "../../helpers.js";
+import axiosInstance from "../../axios.js";
 
 async function getUser(id, accessToken) {
   try {
-    const res = await axios.get(
-      `https://style-sphere-api.vercel.app/api/users/${id}`,
-      {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const res = await axiosInstance.get(`/api/users/${id}`, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
     return res.data;
   } catch (err) {
     console.log(err);
@@ -70,8 +67,8 @@ function User() {
 
     try {
       setError("");
-      const res = await axios.put(
-        `https://style-sphere-api.vercel.app/api/users/${user.currentUser.id}`,
+      const res = await axiosInstance.put(
+        `/api/users/${user.currentUser.id}`,
         { fullname, email, street, city, state },
         {
           headers: {

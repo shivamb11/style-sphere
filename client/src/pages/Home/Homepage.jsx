@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 import Categories from "../../components/Categories/Categories.jsx";
 import Contact from "../../components/Contact/Contact.jsx";
@@ -7,12 +6,11 @@ import SpecialProducts from "../../components/SpecialProducts/SpecialProducts.js
 import Slider from "../../components/Slider/Slider.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import "./Homepage.scss";
+import axiosInstance from "../../axios.js";
 
 async function getFeaturedProducts() {
   try {
-    const res = await axios.get(
-      "https://style-sphere-api.vercel.app/api/products?special=featured"
-    );
+    const res = await axiosInstance.get("/api/products?special=featured");
     return res.data;
   } catch (err) {
     console.log(err);
@@ -21,9 +19,7 @@ async function getFeaturedProducts() {
 
 async function getTopProducts() {
   try {
-    const res = await axios.get(
-      "https://style-sphere-api.vercel.app/api/products?special=new"
-    );
+    const res = await axiosInstance.get("/api/products?special=new");
     return res.data;
   } catch (err) {
     console.log(err);

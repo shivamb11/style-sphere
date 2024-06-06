@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import toast from "react-hot-toast";
 import {
   MdOutlineEqualizer,
@@ -14,6 +13,7 @@ import Loader from "../../components/Loader/Loader.jsx";
 import Error from "../../components/Error/Error.jsx";
 import { addToCart } from "../../redux/cartReducer.js";
 import "./Product.scss";
+import axiosInstance from "../../axios.js";
 
 const img1 =
   "https://images.unsplash.com/photo-1666289973858-cd35e4beb492?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -22,8 +22,8 @@ const img2 =
 
 async function getProduct(id) {
   try {
-    const res = await axios.get(
-      `https://style-sphere-api.vercel.app/api/product/${id}`
+    const res = await axiosInstance.get(
+      `/api/product/${id}`
     );
     return res.data;
   } catch (err) {

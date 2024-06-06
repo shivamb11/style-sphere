@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import axios from "axios";
 
 import { getDeliveryDate } from "../../helpers.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import "./Order.scss";
 import { useDispatch } from "react-redux";
 import { resetCart } from "../../redux/cartReducer.js";
+import axiosInstance from "../../axios.js";
 
 async function getOrder(id, payment, dispatch) {
   try {
-    const res = await axios.get(
-      `https://style-sphere-api.vercel.app/api/orders/${id}`
+    const res = await axiosInstance.get(
+      `/api/orders/${id}`
     );
 
     if (payment) {

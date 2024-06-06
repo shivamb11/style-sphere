@@ -33,7 +33,7 @@ module.exports.register = async (req, res) => {
   const accessToken = jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
     process.env.JWT_SECRET,
-    { expiresIn: "1d" }
+    { expiresIn: "7d" }
   );
 
   res.send({ id: user._id, ...others, accessToken });
@@ -57,7 +57,7 @@ module.exports.login = async (req, res) => {
   const accessToken = jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
     process.env.JWT_SECRET,
-    { expiresIn: "1d" }
+    { expiresIn: "7d" }
   );
 
   res.send({ fullname, email, isAdmin, id, accessToken });

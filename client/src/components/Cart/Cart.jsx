@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -9,6 +8,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import Loader from "../Loader/Loader.jsx";
 import { removeFromCart, resetCart } from "../../redux/cartReducer.js";
 import "./Cart.scss";
+import axiosInstance from "../../axios.js";
 
 const stripePromise = loadStripe(
   "pk_test_51P7TpZSHDZnO68CZsubU7g4NUnrCqI0eO3jhlzBhRhTMxZZH13KU0yLjuXsod8bKclLyQEg07MzhkmqbSdeHvzMw00Yl8O9M6T"
@@ -30,8 +30,8 @@ function Cart({ onShowCart }) {
     setIsLoading(true);
     try {
       const stripe = await stripePromise;
-      const res = await axios.post(
-        "https://style-sphere-api.vercel.app/api/stripe-checkout",
+      const res = await axiosInstance.post(
+        "/api/stripe-checkout",
         {
           products: cart.products,
           user_email: user.currentUser?.email,

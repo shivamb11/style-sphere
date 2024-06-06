@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 import { loginComplete, loginStart } from "../../redux/userReducer.js";
 import "./Register.scss";
 import { validateEmail } from "../../helpers.js";
+import axiosInstance from "../../axios.js";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -47,8 +47,8 @@ function Register() {
     try {
       setError("");
       dispatch(loginStart());
-      const res = await axios.post(
-        "https://style-sphere-api.vercel.app/api/auth/register",
+      const res = await axiosInstance.post(
+        "/api/auth/register",
         {
           fullname,
           username,

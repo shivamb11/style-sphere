@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 import Loader from "../../components/Loader/Loader.jsx";
 import ProductsMenu from "./ProductsMenu.jsx";
 import ProductsDetails from "./ProductsDetails.jsx";
 import Error from "../../components/Error/Error.jsx";
 import "./Products.scss";
+import axiosInstance from "../../axios.js";
 
 async function getProducts(category, subcategory, type, special, name) {
   const categoryUrl = category ? `/${category}` : "";
@@ -17,8 +17,8 @@ async function getProducts(category, subcategory, type, special, name) {
   const nameUrl = name ? `?name=${name}` : "";
 
   try {
-    const res = await axios.get(
-      "https://style-sphere-api.vercel.app/api/products" +
+    const res = await axiosInstance.get(
+      "/api/products" +
         categoryUrl +
         subCategoryUrl +
         typeUrl +
