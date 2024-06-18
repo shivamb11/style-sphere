@@ -9,6 +9,8 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import persistStore from "redux-persist/es/persistStore";
+
 import cartReducer from "./cartReducer.js";
 import userReducer from "./userReducer.js";
 
@@ -36,3 +38,5 @@ export const store = configureStore({
 });
 
 // localStorage.removeItem("persist:root");
+
+export const persistor = persistStore(store);

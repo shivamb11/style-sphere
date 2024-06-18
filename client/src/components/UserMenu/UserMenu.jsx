@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 import { logout } from "../../redux/userReducer.js";
+import { persistor } from "../../redux/store.js";
 import "./UserMenu.scss";
 
 function UserMenu() {
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   function handleLogout() {
     dispatch(logout());
+    persistor.purge();
 
     setTimeout(() => {
       toast.success("Logged out successfully");

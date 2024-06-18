@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 import Loader from "../../components/Loader/Loader.jsx";
@@ -52,6 +52,10 @@ function User() {
     },
     [data]
   );
+
+  if (data === undefined) {
+    return <Navigate to="/login" />;
+  }
 
   if (isLoading) {
     return <Loader />;
