@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -6,16 +7,19 @@ import { store } from "./redux/store.js";
 import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/lib/integration/react.js";
 
+import Error from "./components/Error/Error.jsx";
+import Loader from "./components/Loader/Loader.jsx";
+
 import AppLayout from "./pages/AppLayout/AppLayout.jsx";
 import CustomLayout from "./pages/CustomLayout/CustomLayout.jsx";
-import Homepage from "./pages/Home/Homepage";
-import Products from "./pages/Products/Products";
-import Product from "./pages/Product/Product";
-import Login from "./pages/Login/Login.jsx";
-import Register from "./pages/Register/Register.jsx";
-import User from "./pages/User/User.jsx";
-import Order from "./pages/Order/Order.jsx";
-import Error from "./components/Error/Error.jsx";
+
+const Homepage = lazy(() => import("./pages/Home/Homepage.jsx"));
+const Products = lazy(() => import("./pages/Products/Products.jsx"));
+const Product = lazy(() => import("./pages/Product/Product.jsx"));
+const Login = lazy(() => import("./pages/Login/Login.jsx"));
+const Register = lazy(() => import("./pages/Register/Register.jsx"));
+const User = lazy(() => import("./pages/User/User.jsx"));
+const Order = lazy(() => import("./pages/Order/Order.jsx"));
 
 const router = createBrowserRouter([
   {
@@ -74,8 +78,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <PersistGate loading={"loading"} persistor={persistor}>
-          <RouterProvider router={router}></RouterProvider>
+        <PersistGate loading={<Loader />} persistor={persistor}>
+          <Suspense fallback={<Loader />}>
+            <RouterProvider router={router}></RouterProvider>
+          </Suspense>
           <ReactQueryDevtools initialIsOpen={false} />
         </PersistGate>
       </Provider>
